@@ -161,6 +161,11 @@ public class PlayerController {
         return this.my_board; 
     }
 
+    public void setBoard(BoardObj b)
+    {
+        my_board = b; 
+    }
+
 	public BoardObj update(Move move, BoardObj board, char p)
     {
         BoardObj new_board = new BoardObj(board.getDimension(), board.getWorld());
@@ -336,7 +341,7 @@ public class PlayerController {
                     if(c.getLevel()==1)
                     {
                         this.our_move = c;  
-                        this.our_move.data.pretty_print();
+                        //this.our_move.data.pretty_print();
                     }
                     //System.out.println("v decreased:" + v);
                 }            
@@ -349,6 +354,8 @@ public class PlayerController {
 
     public Move move()
     {
+        System.out.println("Controller Board:");
+        my_board.pretty_print(); 
 		ArrayList<Move> level_one = getPotentialMoves(my_board, player); 
         int eval = evaluate(my_board, player);
         TreeNode<BoardObj> root = new TreeNode<BoardObj>(my_board, eval);
@@ -362,16 +369,17 @@ public class PlayerController {
         our_move.data.pretty_print(); 
 
         TreeNode<BoardObj> parent = our_move.parent; 
-        int index = -1;
-        for(int i=0; i<parent.children.size(); i++)
+        int index = parent.children.indexOf(our_move);
+      /*  for(int i=0; i<parent.children.size(); i++)
         {
             if(parent.children.get(i)==our_move)
             {
                 index = i; 
             }
-        }
+        }*/
+        System.out.println("index" + index);
         Move mv = new Move(1,1,Move.Direction.UP);         
-        if(index>0)
+        if(index>=0)
         {
            mv = level_one.get(index); 
         }
@@ -397,7 +405,7 @@ public class PlayerController {
             i++; 
         }*/
         System.out.println(player); 
-        my_board = update(mv, my_board, opponent); 
+        this.my_board = update(mv, my_board, opponent); 
         //System.out.println("Player:" + player); 
         //System.out.println("" + mv.i +  "," + mv.j + "," + mv.d); 
         if(level_one.isEmpty())
@@ -405,6 +413,7 @@ public class PlayerController {
             return(null); 
         }
        // return(level_one.get(0)); 
+       System.out.println("Move:" + mv.toString()); 
        return(mv); 
     }   
 	
@@ -425,3 +434,4 @@ public class PlayerController {
 	
 	
 }
+
