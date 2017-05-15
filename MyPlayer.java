@@ -85,7 +85,9 @@ public class MyPlayer implements aiproj.slider.SliderPlayer {
 		}
 		else
 		{
-			myBoard = this.p.update(move, myBoard, my_player);
+			System.out.println(move.toString());
+			this.myBoard = this.p.update(move, myBoard, my_player);
+			p.setBoard(myBoard); 
 		}
 	}
 	
@@ -96,3 +98,4 @@ public class MyPlayer implements aiproj.slider.SliderPlayer {
 	}
 	
 }
+
