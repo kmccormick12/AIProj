@@ -111,31 +111,61 @@ public class PlayerController {
 
 	//our evaluation function is to minimize the sum over our pieces of (the number of moves to go off the board + number of blocked spaces)
 	//these 2 components to our featuers will likely need different weights, tbd later 
+    public int playerCount(BoardObj bb, char pp){
+        int numb = 0; 
+        for(int i = 0; i<bb.getDimension(); i++)
+        {
+            for(int j=0; j<bb.getDimension(); j++)
+            {
+                if (pp=='V' && bb.getPiece(i,j) instanceof VerticalPiece)
+                {
+                    numb++; 
+                }
+                else if(pp=='H' && bb.getPiece(i,j) instanceof HorizontalPiece)
+                {
+                    numb++;
+                }
+            }
+        }
+        return numb;
+    }
+
 	public int evaluate(BoardObj curr_board, char p)
 	{
 		int evaluate = 0; 
+        if(p == 'V'){
+            int temp1 = playerCount(curr_board,p);
+            evaluate+=temp1;
+        }
+        else if(p == 'H'){
+            int temp2 = playerCount(curr_board,p);
+            evaluate+=temp2;
+        }
+
 		for(int i = 0; i<curr_board.getDimension(); i++)
 		{
 			for(int j=0; j<curr_board.getDimension(); j++)
 			{
 				if (p=='V' && curr_board.getPiece(i,j) instanceof VerticalPiece)
 				{
-					int comp_1 = dimension-j;  //how many spaces til it goes off the board 
+					int comp_1 = curr_board.getDimension()-j;  //how many spaces til it goes off the board 
 					//check rest of that column to see how many pieces are blocking this piece 
 					int comp_2 = 0; 
 					for(int n=j; n<curr_board.getDimension();n++)
 					{
 						if(!(curr_board.getPiece(i,n) instanceof BlankSpace)&& !(curr_board.getPiece(i,n) instanceof VerticalPiece)) //ie there is something blocking our piece
 						{
-							comp_2++; 
+							comp_2+=20; 
 						}
 					}
+
 					evaluate += comp_1+comp_2; 
 				}
 
 				else if (p=='H' && curr_board.getPiece(i,j) instanceof HorizontalPiece)
-				{
-					int comp_1 = dimension-i;  //how many spaces til it goes off the board 
+				{   
+                
+					int comp_1 = curr_board.getDimension()-i;  //how many spaces til it goes off the board 
 					//check rest of that column to see how many pieces are blocking this piece 
 					int comp_2 = 0; 
 					for(int n=i; n<curr_board.getDimension(); n++)
@@ -144,7 +174,7 @@ public class PlayerController {
 						{
                             //System.out.println("" + n+"," + j);
                             //System.out.println("piece:" + curr_board.getPiece(n,j).getI());
-							comp_2++; 
+							comp_2+=20; 
 						}
 					}
 					evaluate += comp_1+comp_2; 
@@ -152,7 +182,7 @@ public class PlayerController {
 				}
 			}
 		}
-
+        //System.out.println("eval: " + evaluate);
 		return(evaluate); 
 	}
 
@@ -313,16 +343,23 @@ public class PlayerController {
             //this.our_move = r; 
             return(r.eval); 
         }
-        else if(r.getLevel()%2!=0)//maximizing level as we are trying to minimize our function
+        else if(r.getLevel()%2!=0)//maximizing level as we are trying to minimize our function (opposite minimax)
         {
             //System.out.println("r level" + r.getLevel());
             //System.out.println("test_maximizing level");
             int v = -1;
+            int prune = -1;
             for(TreeNode<BoardObj> c: r.children)
             {
                 int v_prime = minimax(c); 
+                if(v_prime > prune){
+                    prune = v_prime;
+                    v = v_prime; 
+                    break;
+                }
                 if(v_prime > v)
                 {
+                    prune = v_prime;
                     v = v_prime;
                     //System.out.println("v increased:" + v);
                 }
