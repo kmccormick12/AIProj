@@ -43,7 +43,7 @@ public class PlayerController {
 		{
 			for(int j=0; j<dimension; j++)
 			{
-				if(root.getPiece(i,j) instanceof VerticalPiece && p=='V')
+				if(root.getPiece(i,j) instanceof VerticalPiece && p == 'V')
 				{
 					VerticalPiece piece = (VerticalPiece) root.getPiece(i,j);
 					Move[] hyp_movs = piece.hypotheticalMovesV(); 
@@ -114,7 +114,7 @@ public class PlayerController {
 	public int evaluate(BoardObj curr_board, char p)
 	{
 		int evaluate = 0; 
-		for(int i =0; i<curr_board.getDimension(); i++)
+		for(int i = 0; i<curr_board.getDimension(); i++)
 		{
 			for(int j=0; j<curr_board.getDimension(); j++)
 			{
@@ -123,9 +123,9 @@ public class PlayerController {
 					int comp_1 = dimension-j;  //how many spaces til it goes off the board 
 					//check rest of that column to see how many pieces are blocking this piece 
 					int comp_2 = 0; 
-					for(int n=0; n<curr_board.getDimension();n++)
+					for(int n=j; n<curr_board.getDimension();n++)
 					{
-						if(!(curr_board.getPiece(i,n) instanceof BlankSpace)&& !(curr_board.getPiece(n,j) instanceof VerticalPiece)) //ie there is something blocking our piece
+						if(!(curr_board.getPiece(i,n) instanceof BlankSpace)&& !(curr_board.getPiece(i,n) instanceof VerticalPiece)) //ie there is something blocking our piece
 						{
 							comp_2++; 
 						}
@@ -138,7 +138,7 @@ public class PlayerController {
 					int comp_1 = dimension-i;  //how many spaces til it goes off the board 
 					//check rest of that column to see how many pieces are blocking this piece 
 					int comp_2 = 0; 
-					for(int n=0; n<curr_board.getDimension(); n++)
+					for(int n=i; n<curr_board.getDimension(); n++)
 					{
 						if(!(curr_board.getPiece(n,j) instanceof BlankSpace)&& !(curr_board.getPiece(n,j) instanceof HorizontalPiece)) //ie there is something blocking our piece
 						{
@@ -201,7 +201,9 @@ public class PlayerController {
 			if(move.d == Move.Direction.UP)
         	{
                 if(move.j+1 >= dimension)  //if their player went off the board 
-                {}
+                {
+
+                }
                 else
                 {
             	    new_board.setPiece(move.i, move.j+1, new VerticalPiece(new Position(move.i, move.j+1),'V'));
@@ -311,7 +313,7 @@ public class PlayerController {
             //this.our_move = r; 
             return(r.eval); 
         }
-        else if(r.getLevel()%2!=0)//maximizing level
+        else if(r.getLevel()%2!=0)//maximizing level as we are trying to minimize our function
         {
             //System.out.println("r level" + r.getLevel());
             //System.out.println("test_maximizing level");
@@ -319,7 +321,7 @@ public class PlayerController {
             for(TreeNode<BoardObj> c: r.children)
             {
                 int v_prime = minimax(c); 
-                if(v_prime>v)
+                if(v_prime > v)
                 {
                     v = v_prime;
                     //System.out.println("v increased:" + v);
@@ -331,16 +333,20 @@ public class PlayerController {
         {
             //System.out.println("r level" + r.getLevel());
             //System.out.println("test_minimizing level");
-            int v= Integer.MAX_VALUE; 
+            int v = Integer.MAX_VALUE; 
             for(TreeNode<BoardObj> c: r.children)
             {
                 int v_prime = minimax(c);
-                if(v_prime<v)
+                if(v_prime <= v)
                 {
                     v = v_prime;
                     if(c.getLevel()==1)
                     {
                         this.our_move = c;  
+                        //System.out.println("printing move: ");
+                        //our_move.data.pretty_print();
+                        //System.out.println("");
+
                         //this.our_move.data.pretty_print();
                     }
                     //System.out.println("v decreased:" + v);
@@ -377,15 +383,19 @@ public class PlayerController {
                 index = i; 
             }
         }*/
-        System.out.println("index" + index);
-        Move mv = new Move(1,1,Move.Direction.UP);         
-        if(index>=0)
-        {
-           mv = level_one.get(index); 
-        }
-        else
-        {
-            System.out.println("idk...");
+        //System.out.println("index " + index);
+        Move mv = new Move(1,1,Move.Direction.UP);   
+        if(!level_one.isEmpty()){    
+            if(index>=0)
+            {
+               System.out.println(level_one.get(index).i + " , " + level_one.get(index).j + " , " + level_one.get(index).d);
+               System.out.println("");
+               mv = level_one.get(index); 
+            }
+            else
+            {
+                System.out.println("idk...");
+            }
         }
         
         //TreeNode<BoardObj> current = root; 

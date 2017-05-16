@@ -104,7 +104,19 @@ public class BoardObj {
 
 		int tempX = ps.getX();
 		int tempY = ps.getY();
-		
+
+		if(tempX >= dimension){
+			return false;
+		}else if(tempY == dimension){
+			return true; 
+		}else if(tempX < 0 || tempY < 0){
+			return false; 
+		}else if(myWorld[tempX][tempY] instanceof BlankSpace){
+			return true;
+		}else{
+			return false; 
+		}
+		/*
 		if(tempX >= dimension || tempY >= dimension || tempX < 0){
 			return false; 
 		}else if(tempY < 0){
@@ -113,7 +125,7 @@ public class BoardObj {
 			return true;
 		}else{
 			return false; 
-		}
+		} */
 	}
 	
 //NOT SURE IF WE NEED THESE ANYMORE 
