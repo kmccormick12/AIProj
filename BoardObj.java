@@ -1,12 +1,11 @@
-package ai.partB;
+package ai.KendallBenjiBot;
 
 
 /**
- *
  * @author Kendall McCormick (880456), Benjamin Taubenblatt (890808)
- * COMP30024: Project 1
+ * COMP30024: Project Part B
  * Tutor: Matt De Bono 
- */
+ */	
 
  //This class sets up a board of a certain dimension and keeps track of all pieces. 
 public class BoardObj {
@@ -116,71 +115,6 @@ public class BoardObj {
 		}else{
 			return false; 
 		}
-		/*
-		if(tempX >= dimension || tempY >= dimension || tempX < 0){
-			return false; 
-		}else if(tempY < 0){
-			return true; 
-		}else if(myWorld[tempX][tempY] instanceof BlankSpace){
-			return true;
-		}else{
-			return false; 
-		} */
 	}
-	
-//NOT SURE IF WE NEED THESE ANYMORE 
-
-/*	public int totalHorizontalMoves(){
-	// This method iterates through the Board and counts the total number of horizontal moves for all Horizontal Players
-	// It utilizes checkHorizontalSpot() to determine if a Player can move. 
-	// returns the total number (int) of possible Horizontal moves for all Horizontal Players. 		
-
-		int counter = 0;
-		
-		for(int i=0; i<dimension; i++){
-			for(int j=0; j<dimension; j++){
-				GeneralPiece temp = myWorld[i][j];
-				
-				if(temp instanceof HorizontalPiece){
-					Position[] pArr = ((HorizontalPiece) temp).hypotheticalMovesH(); 
-					for(int k=0; k<3; k++){ //each piece of type horizontal has 3 hypothetical moves (forward, up, down),
-											//we have to loop through these and validate each
-						boolean result = checkHorizontalSpot(pArr[k]);
-						if(result == true){
-							counter++;
-						}
-					}
-				}
-				
-			}
-		}
-		return counter; 
-	}
-	
-	*/
-	/*
-	public int totalVerticalMoves(){
-		//same method but for vertical pieces 
-
-		int counter = 0;
-		
-		for(int i=0; i<dimension; i++){
-			for(int j=0; j<dimension; j++){
-				GeneralPiece temp = myWorld[i][j];
-				
-				if(temp instanceof VerticalPiece){
-					Position[] pArr = ((VerticalPiece) temp).hypotheticalMovesV(); 
-					for(int k=0; k<3; k++){
-						boolean result = checkVerticalSpot(pArr[k]);
-						if(result == true){
-							counter++;
-						}
-					}
-				}
-				
-			}
-		}
-		return counter; 
-	}*/
 	
 }

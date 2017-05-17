@@ -1,4 +1,10 @@
-package ai.partB;
+package ai.KendallBenjiBot;
+
+/**
+ * @author Kendall McCormick (880456), Benjamin Taubenblatt (890808)
+ * COMP30024: Project Part B
+ * Tutor: Matt De Bono 
+ */	
 
 import aiproj.slider.Move;
 import java.util.Scanner; 
@@ -7,7 +13,6 @@ public class MyPlayer implements aiproj.slider.SliderPlayer {
 	private BoardObj myBoard; 
 	private PlayerController p; 
 	private char my_player; 
-	//private char playerType;
 
 	public MyPlayer(){
 	}
@@ -65,16 +70,10 @@ public class MyPlayer implements aiproj.slider.SliderPlayer {
 			counter++;
 		}
 		sc.close();
-		/*for (int row = 0; row < dimension; row++) {
-	        for (int column = 0; column < myWorld[row].length; column++) {
-	            System.out.print(myWorld[row][column].getI() + " ");
-	        }
-	        System.out.println();
-	    }
-        System.out.println(); */
+		
 		my_player = player; 
         myBoard = new BoardObj(dimension, myWorld); //create our board object 
-        //this.playerType = player; //initiate type  {
+        
 		this.p = new PlayerController(dimension, myBoard, my_player); //pass the horizontal player reference to the board 
 
 	}

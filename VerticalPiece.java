@@ -1,11 +1,11 @@
-package ai.partB;
+package ai.KendallBenjiBot;
 
 /**
- *
  * @author Kendall McCormick (880456), Benjamin Taubenblatt (890808)
- * COMP30024: Project 1
+ * COMP30024: Project Part B
  * Tutor: Matt De Bono 
- */
+ */	
+
 import aiproj.slider.Move;
 
 //subclass of piece that accounts for vertical players 
