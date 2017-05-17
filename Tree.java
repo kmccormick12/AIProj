@@ -1,8 +1,14 @@
-package ai.partB;
+package ai.KendallBenjiBot;
+
+/**
+ * @author Kendall McCormick (880456), Benjamin Taubenblatt (890808)
+ * COMP30024: Project Part B
+ * Tutor: Matt De Bono 
+ */	
 
 import java.util.Iterator; 
 
-
+/* A basic Tree Iterator to iterate over nodes  */
 public class Tree<T> implements Iterator<TreeNode<T>> {
 	private TreeNode<T> aNode; 
 	private Stage st;

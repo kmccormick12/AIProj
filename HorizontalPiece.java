@@ -1,11 +1,10 @@
-package ai.partB;
+package ai.KendallBenjiBot;
 
 /**
- *
  * @author Kendall McCormick (880456), Benjamin Taubenblatt (890808)
- * COMP30024: Project 1
+ * COMP30024: Project Part B
  * Tutor: Matt De Bono 
- */
+ */	
 
 import aiproj.slider.Move;
 
@@ -21,10 +20,11 @@ public class HorizontalPiece extends GeneralPiece{
 	public HorizontalPiece getClone(){
 		return(new HorizontalPiece(this.pos, this.i));
 	}	
+
 	//returns an array of the 3 hypothetically possible moves for any horizontal piece
 	//these potential moves are later validated by the Board class 
-	public Move[] hypotheticalMovesH(){
-
+	public Move[] hypotheticalMovesH()
+	{
         Move mUp = new Move(super.pos.getX(), super.pos.getY(), Move.Direction.UP);
         Move mDown = new Move(super.pos.getX(), super.pos.getY(), Move.Direction.DOWN);
         Move mRight = new Move(super.pos.getX(), super.pos.getY(), Move.Direction.RIGHT);
