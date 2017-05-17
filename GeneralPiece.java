@@ -13,7 +13,6 @@ public class GeneralPiece {
 	protected char i; 
 	
 	public GeneralPiece getClone(){
-		System.out.println("wrong");
 		return(new GeneralPiece(this.pos, this.i));
 	}
 	public GeneralPiece(Position pos, char i){
@@ -32,7 +31,5 @@ public class GeneralPiece {
 	
 	public char getI(){
 		return this.i;
-	}
-	
-	
+	}	
 }

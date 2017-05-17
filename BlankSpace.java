@@ -5,6 +5,7 @@ package ai.KendallBenjiBot;
  * Tutor: Matt De Bono 
  */	
 
+
 public class BlankSpace extends GeneralPiece {
 	
 	public BlankSpace(Position pos, char i){

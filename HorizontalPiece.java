@@ -20,10 +20,11 @@ public class HorizontalPiece extends GeneralPiece{
 	public HorizontalPiece getClone(){
 		return(new HorizontalPiece(this.pos, this.i));
 	}	
+
 	//returns an array of the 3 hypothetically possible moves for any horizontal piece
 	//these potential moves are later validated by the Board class 
-	public Move[] hypotheticalMovesH(){
-
+	public Move[] hypotheticalMovesH()
+	{
         Move mUp = new Move(super.pos.getX(), super.pos.getY(), Move.Direction.UP);
         Move mDown = new Move(super.pos.getX(), super.pos.getY(), Move.Direction.DOWN);
         Move mRight = new Move(super.pos.getX(), super.pos.getY(), Move.Direction.RIGHT);

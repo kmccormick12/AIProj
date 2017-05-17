@@ -8,7 +8,7 @@ package ai.KendallBenjiBot;
 
 import java.util.Iterator; 
 
-
+/* A basic Tree Iterator to iterate over nodes  */
 public class Tree<T> implements Iterator<TreeNode<T>> {
 	private TreeNode<T> aNode; 
 	private Stage st;
